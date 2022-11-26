@@ -1,8 +1,5 @@
-const { notDeepEqual } = require("assert");
 const assert = require("assert");
-const { read } = require("fs");
 const mongoose = require("mongoose");
-const { runInContext } = require("vm");
 
 // Connet to DB (will be created if not already existed)
 mongoose.connect("mongodb://localhost:27017/fruitsDB");
