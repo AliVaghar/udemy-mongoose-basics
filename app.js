@@ -19,8 +19,8 @@ const fruitSchema = new mongoose.Schema({
 // Define collection and assign schema - mongo will use lower case when create it.
 const Fruit = mongoose.model("Fruites", fruitSchema);
 
+// Insert into database
 const insert_db = false;
-
 if (insert_db) {
   const fruit = new Fruit({
     name: "PineApple",
@@ -31,8 +31,8 @@ if (insert_db) {
   fruit.save();
 }
 
-const read_db = true;
-
+// Read from database
+const read_db = false;
 if (read_db) {
   // this means find() will be run. If error occurs, will be passed. If not, fruits will contain the content
   Fruit.find(function (err, fruits) {
@@ -48,4 +48,35 @@ if (read_db) {
       });
     }
   });
+}
+
+// Update database
+const update_db = false;
+if (update_db) {
+  Fruit.updateOne(
+    { _id: "638191a4cde2e8eccdb72e11" },
+    { name: "pine apple" },
+    function (err) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("successfull!")
+      }
+    }
+  );
+}
+
+// Delete database
+const delete_db = true;
+if (delete_db) {
+  Fruit.deleteOne(
+    {name: "pine apple" },
+    function (err) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("successfull deleted!")
+      }
+    }
+  );
 }
